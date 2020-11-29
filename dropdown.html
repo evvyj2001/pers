@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Site</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        a{
+            color: #333333;
+            text-decoration: none;
+        }
+        .btn{
+            display: inline-block;
+            font-size: 20px;
+            font-weight: bold;
+            border: 1px solid #333;
+            padding: 10px 20px;
+        }
+        .btn span{
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 26px;
+            line-height: 1em;
+            transition: .3s all;
+        }
+        .btn.clicked span{
+            transform: rotate(-240deg);
+        }
+        .toggle_list{
+            overflow: hidden;
+            width: 200px;
+            text-align: center;
+            display: none;
+        }
+        .toggle_list li a{
+            padding: 10px 0;
+            display: block;
+        }
+        .toggle_list.show{
+            display: block;
+        }
+    </style>
+    <script src="js/prefixfree.min.js"></script>
+    <script>
+        function toggle_effect(){
+            var toggle_btn=document.getElementsByClassName('btn')[0];
+            var toggle_li=document.getElementsByClassName('toggle_list')[0];
+            toggle_btn.classList.toggle('clicked');
+            toggle_li.classList.toggle('show');
+        }
+    </script>
+</head>
+<body>
+    <a href="#click" class="btn" onclick="toggle_effect();">
+        패밀리 사이트 <span>+</span>
+    </a>
+    <ul class="toggle_list">
+        <li><a href="#">패밀리 사이트1</a></li>
+        <li><a href="#">패밀리 사이트2</a></li>
+        <li><a href="#">패밀리 사이트3</a></li>
+        <li><a href="#">패밀리 사이트4</a></li>
+    </ul>
+</body>
+</html>

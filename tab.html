@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        a{
+            color: #333333;
+            text-decoration: none;
+        }
+        .tab_wrap{
+            overflow: hidden;
+            border: 1px solid #efefef;
+            width: 800px;
+        }
+        .tab_wrap li{
+            float: left;
+            font-size: 20px;
+            font-weight: bold;
+            width: 200px;
+            text-align: center;
+            padding: 10px 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: all .3s;
+        }
+        .tab_wrap li:not(:last-child){
+            border-right: 1px solid #efefef;
+        }
+        .tab_wrap li:hover {
+            background-color: #efefef;
+        }
+        .tab_wrap li.on{
+            background-color: #333;
+            color: #ffffff;
+        }
+        .tab_contents_wrap{
+            width: 800px;
+            text-align: center;
+            border: 1px solid #efefef;
+            position: relative;
+            top: -1px;
+        }
+        .tab_contents_wrap li{
+            height: 150px;
+        }
+        .tab_contents_wrap li:not(:first-of-type){
+            display: none;
+        }
+    </style>
+    <script src="js/prefixfree.min.js"></script>
+    <script>
+        function openTab(tab_num, element){
+            var i, tab_cnt, tab_link;
+            var tab_cnt = document.getElementsByClassName('tab_cont');
+            var tab_link = document.getElementsByClassName('tab_btn');
+
+            for(i=0; i<tab_cnt.length;i++){
+                tab_cnt[i].style.display='none';
+            }
+            for(i=0; i<tab_link.length;i++){
+                tab_link[i].classList.remove('on');
+            }
+
+            document.getElementById(tab_num).style.display='block';
+            element.classList.add('on');
+        }
+    </script>
+</head>
+<body>
+    <ul class="tab_wrap">
+        <li class="tab_btn on" onclick="openTab('tab1', this)">tab1</li>
+        <li class="tab_btn" onclick="openTab('tab2', this)">tab2</li>
+        <li class="tab_btn" onclick="openTab('tab3', this)">tab3</li>
+        <li class="tab_btn" onclick="openTab('tab4', this)">tab4</li>
+    </ul>  
+    <ul class="tab_contents_wrap">
+        <li class="tab_cont" id="tab1">콘텐츠1</li>
+        <li class="tab_cont" id="tab2">콘텐츠2</li>
+        <li class="tab_cont" id="tab3">콘텐츠3</li>
+        <li class="tab_cont" id="tab4">콘텐츠4</li>
+    </ul>    
+</body>
+</html>

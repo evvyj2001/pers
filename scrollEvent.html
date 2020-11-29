@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrollEvent</title>
+    <style>
+            .section1{
+                width: 100%;
+                background:#ccc;
+            }
+            .section1.on{
+                background: royalblue;
+            }
+            .section1 div{
+                border: 5px solid #999;
+                box-sizing: border-box;
+                height: 400px;
+            }
+            .section2{
+                background: #222222;
+            }
+            .section2 p{
+                text-align: center;
+                 color: #ffffff;
+                 padding: 100px 0;
+            }
+            .section3{
+                height: 1000px;
+            }
+    </style>
+    <script src="js/prefixfree.min.js"></script>
+    
+</head>
+<body>
+    <section class="section1">
+        <div>section1입니다.</div>
+    </section> 
+    <section class="section2">
+        <p>SectionArea!!!2입니다</p>
+    </section>    
+    <section class="section3">
+
+    </section>
+    <script>
+        var sectionChange = document.getElementsByClassName('section1')[0];
+        var sectionArea = document.getElementsByClassName('section2')[0].offsetTop - 200;
+        
+        function showScroll(){
+            var currentScroll = window.scrollY;
+            if(sectionArea < currentScroll){
+                sectionChange.classList.add("on");
+            }else{
+                sectionChange.classList.remove("on");
+            }
+        };
+        window.addEventListener('scroll',showScroll);
+    </script>
+</body>
+</html>
