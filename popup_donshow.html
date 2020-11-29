@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하루동안 이 창 열지 않기 팝업</title>
+    <style>
+        .popup_wrap{
+            width: 300px;
+            height: 300px;
+            margin: 0;
+            background: #eeeeee;
+        }
+        .popup_wrap.off{
+            display: none;
+        }
+        .popup_contents_area{
+            font-size: 30px;
+            color: #ffffff;
+            background: darkgreen;
+            height: 270px;
+            line-height: 270px;
+            text-align: center;
+        }
+        .layer_btns_area{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 30px;
+            padding: 0 4px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+        }
+        .close_btn{
+            display: block;
+            color: #333333;
+        }
+    </style>
+    <script src="js/prefixfree.min.js"></script>
+</head>
+<body>
+    <div class="popup_wrap">
+        <div class="popup_contents_area">
+            팝업 내용
+        </div>
+        <div class="layer_btns_area">
+            <div class="layer_">
+                <input type="checkbox" id="pop_chk" name="pop_today" class="pop_chkbox"><label for="pop_chk">오늘 하루 이 창을 열지 않음</label>
+            </div>
+            <a href="#c" class="close_pop">닫기</a>
+        </div>
+    </div>
+    <script>
+        const closePop = document.querySelector('.close_pop');
+        const popCont = document.querySelector('.popup_wrap');
+        const checkPop = document.querySelector('.pop_chkbox');
+
+        function setCookie(name, value, expirehours){
+            var todayDate = new Date();
+            todayDate.setHours(todayDate.getHours() + expirehours);
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+        }
+
+        cookiedata = document.cookie;
+        if(cookiedata.indexOf('ncookie=done') < 0){ // ncookie가 done 상태가 아니라면
+            popCont.classList.remove('off'); // 팝업 뜬다.
+        }else{
+            popCont.classList.add('off');
+        }
+
+        function closeEventPop(){
+            if(checkPop.checked){ // 하루동안 체크박스 체크상태라면
+                setCookie('ncookie', 'done', 24); // 24시간 동안 done 상태 == 즉 팝업 안 뜬다.
+            }
+            popCont.classList.add('off');
+        }
+        function init(){
+            closePop.addEventListener('click', closeEventPop);
+        }
+        init();
+    </script>
+</body>
+</html>

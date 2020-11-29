@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModalPopup</title>
+    <style>
+        .pop_btn{
+            display: inline-block;
+            vertical-align: top;
+            color: #ffffff;
+            background: darkblue;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .pop_opacity{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: .5s;
+            z-index: -1;
+        }
+        .pop_opacity.on,.pop.on{
+            opacity: 1;
+            z-index: 1;
+        }
+        .pop{
+            width: 90%;
+            height: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #eeeeee;
+            opacity: 0;
+            transform: translate(-50%,-50%);
+            transition: .5s;
+            z-index: -1;
+        }
+        .pop_close{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #333333;
+            font-weight: normal;
+        }
+    </style>
+    <script src="js/prefixfree.min.js"></script>
+</head>
+<body>
+    <a href="#void" class="pop_btn">클릭 시 팝업 실행</a>
+    <div class="pop_opacity"></div>
+    <div class="pop">
+        팝업창 오픈~!!
+        <a href="#void" class="pop_close">닫기</a>
+    </div>
+    <script>
+        const popButton = document.querySelector('.pop_btn');
+        const popCont = document.querySelector('.pop');
+        const popClose = document.querySelector('.pop_close');
+        const popOpacity = document.querySelector('.pop_opacity');
+
+        function popEventOpen(){
+            popCont.classList.add('on');
+            popOpacity.classList.add('on')
+        }
+        function popEventClose(){
+            popCont.classList.remove('on');
+            popOpacity.classList.remove('on');
+        }
+        function init(){
+            popButton.addEventListener('click',popEventOpen);
+            popClose.addEventListener('click',popEventClose);
+            popOpacity.addEventListener('click',popEventClose);
+        }
+
+        init();
+    </script>
+</body>
+</html>
