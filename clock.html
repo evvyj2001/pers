@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock JS</title>
+    <style>
+        .js-clock{
+            padding: 0 100px;
+        }
+        .js-clock span{
+            font-size: 40px;
+            display: inline-block;
+        }
+        .js-clock h1{
+            margin: 0;
+            font-size: 80px;
+            color: #333;
+            letter-spacing: 10px;
+        }
+    </style>
+    <script src="js/prefixfree.min.js"></script>
+    
+</head>
+<body>
+    <div class="js-clock">
+        <span></span>
+        <h1></h1>
+    </div>
+    <script>
+        const clockWrap = document.querySelector('.js-clock'),
+        clockName = clockWrap.querySelector('h1');
+        ampm = clockWrap.querySelector('span');
+
+        function getTime(){
+            const date = new Date();
+            const minutes = date.getMinutes();
+            const hours = date.getHours();
+            const seconds = date.getSeconds();
+            //출력되는 숫자가 10보다 작으면 앞에 0붙여서 출력되게
+            clockName.innerText = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds }`;
+            if(hours < 12){
+                ampm.innerText = 'AM🌞';
+            }else{
+                ampm.innerText = 'PM🌙';
+            }
+        }
+        function init(){
+            getTime();
+            setInterval(getTime,1000);
+        }
+
+        init();
+    </script>
+</body>
+</html>
